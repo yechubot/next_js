@@ -5,16 +5,15 @@ import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 export default function Home() {
   return (
-    //js 번들이 해당 페이지로 갈때만 작동한다
-    //처음에 해당 페이지를 갈 때 생긴다. 
-    //각 페이지는 해당 js 번들이 있다. 
-    //navbar, footer를 지웠어도 Layout으로 감싸줬기 때문에 다 나오는 것임 
+  //global.css를 변경해서 스타일을 주거나
+  //있는 모듈.css를 쓰기 위해서는 다음과 같이 접근한다. 이미 위에 module.css는 import 된 상태기 때문에 다음과 같이 원하는 클래스 이름을 style. 로 접근하여 사용하면 된다.
+//또한 다른 곳에 같은 클래스의 모듈을 사용해도 scope이 달라서 상관없다. 어디서나 같은 클래스 이름으로 사용할 수 있다.
     <div>
     
-      <h2>Homepage</h2>
-      <p>consuetudium lectorum. Mirum ninja est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem ninja ipsum modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in ninja futurum.</p>
+      <h2 className={styles.title}>Homepage</h2>
+      <p className={styles.text}>consuetudium lectorum. Mirum ninja est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem ninja ipsum modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in ninja futurum.</p>
       <Link href="/ninjas">
-        <a>See Ninja Listing</a>
+        <a className={styles.btn}>See Ninja Listing</a>
       </Link>
    
     </div>
