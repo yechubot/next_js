@@ -1,11 +1,32 @@
+import styles from '../../styles/Ninjas.module.css'
 
-const Ninjas = () => {
-    //서브 폴더인 ninjas 에 index 폴더 이름으로 만들면
-    // 서브 폴더의 메인으로 route가 잡힌다. 
-    //그래서 /ninjas 만으로  /ninjas/index에 접근할 수 있다. 
+export const getStaticProps = async() => {
+ //이 함수는 브라우저에서 작동하지 않는다. 빌드 타임에서만 작동한다
+
+ const res = await fetch('https://jsonplaceholder.typicode.com/users');
+ 
+ //json 메소드 
+ const data = await res.json();
+//value를 받는다 
+ return {
+     props: {ninjas: data}//이제 이 데이터를 컴포넌트에 쓸 수 있다.
+ }
+}
+// ---- this runs before component is rendered
+
+const Ninjas = ({ninjas}) => {
+  //리액트의 경우 useEffect 안에서 fake json 을 가져왔지만, 넥스트 js는 이미 브라우저에 도달할 때 렌더링이 끝나있다. 즉 그 전에 데이터를 받아야 한다. next js 의 특정함수를 이용해서 할 수 있다. 
     return ( 
         <div> 
             <h1>All Ninjas</h1>
+            {ninjas.map(ninja => (
+                <div key ={ninja.id}>
+                    <a className={styles.single}>
+                        <h3>{ninja.name}</h3>
+                        <h4>{ninja.email}</h4>
+                    </a>
+                </div>
+            ))}
         </div>
      );
 }
