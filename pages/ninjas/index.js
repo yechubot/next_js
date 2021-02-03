@@ -1,5 +1,6 @@
 import styles from '../../styles/Ninjas.module.css'
-
+import Link from 'next/link'
+//export 해야함 
 export const getStaticProps = async() => {
  //이 함수는 브라우저에서 작동하지 않는다. 빌드 타임에서만 작동한다
 
@@ -20,12 +21,12 @@ const Ninjas = ({ninjas}) => {
         <div> 
             <h1>All Ninjas</h1>
             {ninjas.map(ninja => (
-                <div key ={ninja.id}>
+                <Link href = {'/ninjas/'+ninja.id}key ={ninja.id}>
                     <a className={styles.single}>
                         <h3>{ninja.name}</h3>
                         <h4>{ninja.email}</h4>
                     </a>
-                </div>
+                </Link>
             ))}
         </div>
      );
